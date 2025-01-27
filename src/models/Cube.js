@@ -36,7 +36,7 @@ class Cube {
     }
 
     animate() {
-        this.mesh.rotation.y += 0.01;
+        this.mesh.rotation.y += 0.1;
         this.mesh.rotation.z += 0.01;
     }
 }
