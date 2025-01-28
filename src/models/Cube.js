@@ -9,9 +9,10 @@ class Cube {
     size
     dash
 
-    constructor({ type, x, y, z, sizex, sizey, sizez, color }) {
+    constructor({ type, x, y, z, sizex, sizey, sizez, color, map }) {
         const geometry = new THREE.BoxGeometry(sizex, sizey, sizez)
-        const material = new THREE.MeshPhongMaterial({ color: color });
+        const material = map ? new THREE.MeshPhongMaterial({ map: map }) : new THREE.MeshPhongMaterial({ color: color });
+        // const material = new THREE.MeshPhongMaterial({ color: color });
         this.mesh = new THREE.Mesh(geometry, material);
         this.mesh.position.x = x
         this.mesh.position.z = y
@@ -36,8 +37,8 @@ class Cube {
     }
 
     animate() {
-        this.mesh.rotation.y += 0.1;
-        this.mesh.rotation.z += 0.01;
+        this.mesh.rotation.y += 0.05;
+        this.mesh.rotation.z += 0.02;
     }
 }
 

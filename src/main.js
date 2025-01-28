@@ -1,25 +1,23 @@
 import * as THREE from 'three'
 import Cube from './models/Cube'
+import PlaneFloor from './models/PlaneFloor'
+import PlaneSky from './models/PlaneSky'
 
 
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(45, iw / ih)
 const light = new THREE.PointLight(0xeeeeee)
 
-// Create the floor
-const floorGeometry = new THREE.PlaneGeometry(10, 10);
-const floorMaterial = new THREE.MeshBasicMaterial({ color: 0x654321 }); // Dark brown color
-const floor = new THREE.Mesh(floorGeometry, floorMaterial);
-floor.rotation.x = -Math.PI / 2; // Rotate the plane to be flat
-floor.position.y = -1; // Adjust position to place it below the cubes
-scene.add(floor);
+scene.add(new PlaneFloor().mesh);
+scene.add(new PlaneSky().mesh)
 
 // add cubes
 let cubes = []
 for (let i = 1; i < 3; i += 0.5) {
-  cubes.push(new Cube({ type: "E" + i * 2, x: i * 1.5, y: i / 2, z: i / 2, sizex: 0.5, sizey: 0.5, sizez: 0.5, color: `#0${i * 2}${i * 2}000` }))
+  cubes.push(new Cube({ type: "E" + i * 2, x: i * 1.5, y: i / 2, z: i / 2, sizex: 0.5, sizey: 0.5, sizez: 0.5, map: new THREE.TextureLoader().load('Texturelabs_InkPaint_392S.jpg') }))
 }
-let player1 = new Cube({ type: "P1", x: -1, y: -1, z: 0.5, sizex: 0.5, sizey: 0.5, sizez: 0.5, color: '#0000ff' })
+
+let player1 = new Cube({ type: "P1", x: -1, y: -1, z: 0.5, sizex: 0.5, sizey: 0.5, sizez: 0.5, map: new THREE.TextureLoader().load('Texturelabs_Wood_120S.jpg') })
 scene.add(player1.mesh)
 cubes.forEach(cube => scene.add(cube.mesh))
 scene.add(light)
