@@ -43,6 +43,7 @@ function updatePlayerMovement() {
   if (keysPressed.has('KeyS')) player1.move('down');
   if (keysPressed.has('KeyA')) player1.move('left');
   if (keysPressed.has('KeyD')) player1.move('right');
+  if (keysPressed.has('Space')) player1.move('jump');
 }
 
 loop()
